@@ -33,12 +33,58 @@ function copy_to_cards(){
 }
 
 function distribute_cards(){
+    try {
+        clean_all_cards();
+    }
+    catch (err){
+        console.log('All boards are already clear');
+    }
+    let player1 = document.getElementById('player1');
+    let player2 = document.getElementById('player2');
+    let player3 = document.getElementById('player3');
+    let player4 = document.getElementById('player4');
     copy_to_cards();
     for(let i=0;i<13;i++){
-        player1_cards.push(get_random_card('player1'));
-        player2_cards.push(get_random_card('player2'));
-        player3_cards.push(get_random_card('player3'));
-        player4_cards.push(get_random_card('player4'));
+        let p1card = get_random_card('player1');
+        let p2card = get_random_card('player2');
+        let p3card = get_random_card('player3');
+        let p4card = get_random_card('player4');
+        player1_cards.push(p1card);
+        player2_cards.push(p2card);
+        player3_cards.push(p3card);
+        player4_cards.push(p4card);
+
+        let p1card_ele = document.createElement('div');
+        p1card_ele.setAttribute('class', 'card');
+        p1card_ele.setAttribute('card', `${p1card.card}`);
+        p1card_ele.setAttribute('value', `${p1card.value}`);
+        p1card_ele.setAttribute('player', `player1`);
+        p1card_ele.innerText = `${p1card.card} ${p1card.value}`;
+        player1.children[1].appendChild(p1card_ele);
+
+        let p2card_ele = document.createElement('div');
+        p2card_ele.setAttribute('class', 'card');
+        p2card_ele.setAttribute('card', `${p2card.card}`);
+        p2card_ele.setAttribute('value', `${p2card.value}`);
+        p2card_ele.setAttribute('player', `player2`);
+        p2card_ele.innerText = `${p2card.card} ${p2card.value}`;
+        player2.children[1].appendChild(p2card_ele);
+        
+        let p3card_ele = document.createElement('div');
+        p3card_ele.setAttribute('class', 'card');
+        p3card_ele.setAttribute('card', `${p3card.card}`);
+        p3card_ele.setAttribute('value', `${p3card.value}`);
+        p3card_ele.setAttribute('player', `player3`);
+        p3card_ele.innerText = `${p3card.card} ${p3card.value}`;
+        player3.children[1].appendChild(p3card_ele);
+        
+        let p4card_ele = document.createElement('div');
+        p4card_ele.setAttribute('class', 'card');
+        p4card_ele.setAttribute('card', `${p4card.card}`);
+        p4card_ele.setAttribute('value', `${p4card.value}`);
+        p4card_ele.setAttribute('player', `player4`);
+        p4card_ele.innerText = `${p4card.card} ${p4card.value}`;
+        player4.children[1].appendChild(p4card_ele);
     }
 }
 
@@ -74,13 +120,12 @@ function get_greatest_card(){
 }
 
 // this will return player who has thrown the greatest card
-function get_card_picker(){
+// function get_card_picker(){
 
-}
+// }
 
-function play(player){
+function play(player, num){
     console.log(player);
-    let num = prompt('enter which card do you want to use');
     let card = player[num];
     if(chance==0){
         chaal = card;
@@ -105,6 +150,8 @@ function play(player){
         chance++;
     }
     cards_on_board.push(card);
+    
+    
     if(cards_on_board.length==4){
         pick_cards();
         cards_on_board = [];
@@ -153,5 +200,6 @@ function pick_cards(){
             player4_collection.push(card);
         })
     }
+    clean_board();
 }
 

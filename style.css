@@ -1,0 +1,27 @@
+.cards_on_board{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.card{
+    height: 125px;
+    width: 60px;
+    border-radius: 10px;
+    background: rgb(183 183 183);
+    border: 1px solid rgba(97, 97, 97, 0.692);
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    padding: 10px;
+    margin: 0px -30px;
+}
+
+

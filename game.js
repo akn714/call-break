@@ -56,33 +56,45 @@ function distribute_cards(){
 
         let p1card_ele = document.createElement('div');
         p1card_ele.setAttribute('class', 'card');
+        p1card_ele.setAttribute('id', `${p1card.card}${p1card.value}`);
         p1card_ele.setAttribute('card', `${p1card.card}`);
         p1card_ele.setAttribute('value', `${p1card.value}`);
+        p1card_ele.setAttribute('num', `${i}`);
         p1card_ele.setAttribute('player', `player1`);
+        p1card_ele.style.background = p1card.card=='S' || p1card.card=='C'?'#777777':'#ff4343';
         p1card_ele.innerText = `${p1card.card} ${p1card.value}`;
         player1.children[1].appendChild(p1card_ele);
-
+        
         let p2card_ele = document.createElement('div');
         p2card_ele.setAttribute('class', 'card');
+        p2card_ele.setAttribute('id', `${p2card.card}${p2card.value}`);
         p2card_ele.setAttribute('card', `${p2card.card}`);
         p2card_ele.setAttribute('value', `${p2card.value}`);
+        p2card_ele.setAttribute('num', `${i}`);
         p2card_ele.setAttribute('player', `player2`);
+        p2card_ele.style.background = p2card.card=='S' || p2card.card=='C'?'#777777':'#ff4343';
         p2card_ele.innerText = `${p2card.card} ${p2card.value}`;
         player2.children[1].appendChild(p2card_ele);
         
         let p3card_ele = document.createElement('div');
         p3card_ele.setAttribute('class', 'card');
+        p3card_ele.setAttribute('id', `${p3card.card}${p3card.value}`);
         p3card_ele.setAttribute('card', `${p3card.card}`);
         p3card_ele.setAttribute('value', `${p3card.value}`);
+        p3card_ele.setAttribute('num', `${i}`);
         p3card_ele.setAttribute('player', `player3`);
+        p3card_ele.style.background = p3card.card=='S' || p3card.card=='C'?'#777777':'#ff4343';
         p3card_ele.innerText = `${p3card.card} ${p3card.value}`;
         player3.children[1].appendChild(p3card_ele);
         
         let p4card_ele = document.createElement('div');
         p4card_ele.setAttribute('class', 'card');
+        p4card_ele.setAttribute('id', `${p4card.card}${p4card.value}`);
         p4card_ele.setAttribute('card', `${p4card.card}`);
         p4card_ele.setAttribute('value', `${p4card.value}`);
+        p4card_ele.setAttribute('num', `${i}`);
         p4card_ele.setAttribute('player', `player4`);
+        p4card_ele.style.background = p4card.card=='S' || p4card.card=='C'?'#777777':'#ff4343';
         p4card_ele.innerText = `${p4card.card} ${p4card.value}`;
         player4.children[1].appendChild(p4card_ele);
     }
@@ -124,7 +136,7 @@ function get_greatest_card(){
 
 // }
 
-function play(player, num){
+function play(player, num, card_shape, card_value){
     console.log(player);
     let card = player[num];
     if(chance==0){
@@ -151,14 +163,17 @@ function play(player, num){
     }
     cards_on_board.push(card);
     
-    
+    console.log(card, player[num])
     if(cards_on_board.length==4){
         pick_cards();
         cards_on_board = [];
         chance = 0;
     }
     delete player[num];
-    player = player.filter(Object);
+    // player = player.filter(Object);
+    let card_to_remove = document.getElementById(`${card_shape}${card_value}`);
+    console.log(card_to_remove);
+    card_to_remove.parentElement.removeChild(card_to_remove);
 }
 
 function sort_cards_on_ground(){

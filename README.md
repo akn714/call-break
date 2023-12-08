@@ -7,4 +7,5 @@ This is a cards game called call-break.
 * Displaying cards of players on there individual devices
 * changing colors of cards
 * pausing the board before cleaning the board
+* diabling distribute cards button after distributing cards
 

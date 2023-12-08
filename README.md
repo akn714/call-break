@@ -8,4 +8,6 @@ This is a cards game called call-break.
 * done: changing colors of cards
 * done: pausing the board before cleaning the board
 * diabling distribute cards button after distributing cards
+* flashing message instead of alert
+* adding cards images
 

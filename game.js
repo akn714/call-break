@@ -221,6 +221,73 @@ function pick_cards(){
     }
     setTimeout(() => {
         clean_board();
+        if(player1_cards.length==0){
+            restart_game();
+        }
     }, 4000);
 }
+
+function restart_game(){
+    declare_winner();
+    distribute.setAttribute('disabled', 'false');
+}
+
+function declare_winner(){
+    let p1collection = player1_collection.length;
+    let p2collection = player2_collection.length;
+    let p3collection = player3_collection.length;
+    let p4collection = player4_collection.length;
+
+    if(p1collection>p2collection){
+        if(p1collection>p3collection){
+            if(p1collection>p4collection){
+                alert('player 1 is winner');
+            }
+            else{
+                alert('player 4 is winner');
+            }
+        }
+        else{
+            if(p3collection>p4collection){
+                alert('player 3 is winner');
+            }
+            else{
+                alert('player 4 is winner');
+            }
+        }
+    }
+    else{
+        if(p2collection>p3collection){
+            if(p2collection>p4collection){
+                alert('player 1 is winner');
+            }
+            else{
+                alert('player 4 is winner');
+            }
+        }
+        else{
+            if(p3collection>p4collection){
+                alert('player 3 is winner');
+            }
+            else{
+                alert('player 4 is winner');
+            }
+        }
+    }
+
+    player1_collection = [];
+    player2_collection = [];
+    player3_collection = [];
+    player4_collection = [];
+    player1_cards = [];
+    player2_cards = [];
+    player3_cards = [];
+    player4_cards = [];
+    already_distributed = [];
+    available_cards = [];
+}
+
+
+
+
 

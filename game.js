@@ -137,11 +137,15 @@ function get_greatest_card(){
 // }
 
 function play(player, num, card_shape, card_value){
+    console.log(chance);
+    // if(chance!=parseInt(player[num].player.substr(6))-1){
+    //     alert('Not your chance');
+    //     return
+    // }
     console.log(player);
     let card = player[num];
     if(chance==0){
         chaal = card;
-        chance++;
     }
     if(card.card==chaal.card && card.card!='S'){
         if(card.value=='A'){
@@ -159,9 +163,9 @@ function play(player, num, card_shape, card_value){
         else{
             card.p = parseInt(card.value)-1;
         }
-        chance++;
     }
     cards_on_board.push(card);
+    chance++;
     
     console.log(card, player[num])
     if(cards_on_board.length==4){
@@ -215,6 +219,8 @@ function pick_cards(){
             player4_collection.push(card);
         })
     }
-    clean_board();
+    setTimeout(() => {
+        clean_board();
+    }, 4000);
 }
 

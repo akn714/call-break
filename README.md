@@ -2,10 +2,10 @@
 This is a cards game called call-break.
 
 ### Todo
-* Making card disappear after using
-* Plaing player chance wise
+* done: Making card disappear after using
+* done: Plaing player chance wise
 * Displaying cards of players on there individual devices
-* changing colors of cards
-* pausing the board before cleaning the board
+* done: changing colors of cards
+* done: pausing the board before cleaning the board
 * diabling distribute cards button after distributing cards
 

@@ -14,6 +14,10 @@ function clean_all_cards(){
 }
 
 function drop_card_on_board(card, card_value, player, num){
+    if(chance!=parseInt(player.substr(6))-1){
+        alert(`player ${chance+1}'s chance`);
+        return
+    }
     let card_on_board = document.createElement('div');
     card_on_board.setAttribute('class', 'card');
     card_on_board.innerText = `${card} ${card_value}`;

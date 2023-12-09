@@ -1,8 +1,35 @@
+*{
+    color: #ff9d9d;
+}
+
+html{
+    background: red;
+    box-shadow: inset black 0px 0px 160px -4px;
+}
+
+body{
+    height: 100vh;
+    padding: 10px;
+    margin: 0;
+}
+
+#distribute{
+    height: 40px;
+    width: 150px;
+    font-size: 18px;
+    color: red;
+    border: 1px solid blue;
+    border-radius: 10px;
+    background: #9da4ff73;
+    color: #0000b7;
+}
+
 .cards_on_board{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    height: 190px;
 }
 
 .cards{
@@ -13,14 +40,15 @@
 }
 .card{
     height: 125px;
-    width: 60px;
+    width: 80px;
     border-radius: 10px;
     background: rgb(183 183 183);
-    border: 1px solid rgba(97, 97, 97, 0.692);
+    color: white;
+    border: 1px solid rgb(127 127 127 / 69%);
     display: flex;
     /* justify-content: center; */
     /* align-items: center; */
-    padding: 10px;
+    /* padding: 10px; */
     margin: 0px -30px;
     box-shadow: black 0px 0px 20px -6px;
 }

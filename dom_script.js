@@ -31,11 +31,11 @@ function drop_card_on_board(card, card_value, player, num){
     else if(player=='player4'){
         Player = player4_cards;
     }
-    play(Player,num,card,card_value);
     let card_on_board = document.createElement('div');
     card_on_board.setAttribute('class', 'card');
-    card_on_board.innerText = `${card} ${card_value}`;
-    card_on_board.style.background = card=='S' || card=='C'?'#777777':'#ff4343';
+    card_on_board.innerHTML = `<img src=${Player[num].image}>`;
+    card_on_board.style.background = card=='S' || card=='C'?'black':'red';
+    play(Player,num,card,card_value);
     cards_on_board_element[0].appendChild(card_on_board);
 }
 

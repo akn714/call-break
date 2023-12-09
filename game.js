@@ -1,10 +1,10 @@
 // cards -> SPADE (S), DIMAND (D), HEART (H), CLUB (C)
 
 let deck = [
-    [{'card':'S','value':'A','p':52},{'card':'S','value':'K','p':51},{'card':'S','value':'Q','p':50},{'card':'S','value':'J','p':49},{'card':'S','value':'10','p':48},{'card':'S','value':'9','p':47},{'card':'S','value':'8','p':46},{'card':'S','value':'7','p':45},{'card':'S','value':'6','p':44},{'card':'S','value':'5','p':43},{'card':'S','value':'4','p':42},{'card':'S','value':'3','p':41},{'card':'S','value':'2','p':40}],
-    [{'card':'D','value':'A'},{'card':'D','value':'K'},{'card':'D','value':'Q'},{'card':'D','value':'J'},{'card':'D','value':'10'},{'card':'D','value':'9'},{'card':'D','value':'8'},{'card':'D','value':'7'},{'card':'D','value':'6'},{'card':'D','value':'5'},{'card':'D','value':'4'},{'card':'D','value':'3'},{'card':'D','value':'2'}],
-    [{'card':'H','value':'A'},{'card':'H','value':'K'},{'card':'H','value':'Q'},{'card':'H','value':'J'},{'card':'H','value':'10'},{'card':'H','value':'9'},{'card':'H','value':'8'},{'card':'H','value':'7'},{'card':'H','value':'6'},{'card':'H','value':'5'},{'card':'H','value':'4'},{'card':'H','value':'3'},{'card':'H','value':'2'}],
-    [{'card':'C','value':'A'},{'card':'C','value':'K'},{'card':'C','value':'Q'},{'card':'C','value':'J'},{'card':'C','value':'10'},{'card':'C','value':'9'},{'card':'C','value':'8'},{'card':'C','value':'7'},{'card':'C','value':'6'},{'card':'C','value':'5'},{'card':'C','value':'4'},{'card':'C','value':'3'},{'card':'C','value':'2'}]
+    [{'image':'images/ace_of_spades.png', 'card':'S','value':'A','p':52},{'image':'images/king_of_spades2.png', 'card':'S','value':'K','p':51},{'image':'images/queen_of_spades2.png', 'card':'S','value':'Q','p':50},{'image':'images/jack_of_spades2.png', 'card':'S','value':'J','p':49},{'image':'images/10_of_spades.png', 'card':'S','value':'10','p':48},{'image':'images/9_of_spades.png', 'card':'S','value':'9','p':47},{'image':'images/8_of_spades.png', 'card':'S','value':'8','p':46},{'image':'images/7_of_spades.png', 'card':'S','value':'7','p':45},{'image':'images/6_of_spades.png', 'card':'S','value':'6','p':44},{'image':'images/5_of_spades.png', 'card':'S','value':'5','p':43},{'image':'images/4_of_spades.png', 'card':'S','value':'4','p':42},{'image':'images/3_of_spades.png', 'card':'S','value':'3','p':41},{'image':'images/2_of_spades.png', 'card':'S','value':'2','p':40}],
+    [{'image':'images/ace_of_diamonds.png', 'card':'D','value':'A'},{'image':'images/king_of_diamonds2.png', 'card':'D','value':'K'},{'image':'images/queen_of_diamonds2.png', 'card':'D','value':'Q'},{'image':'images/jack_of_diamonds2.png', 'card':'D','value':'J'},{'image':'images/10_of_diamonds.png', 'card':'D','value':'10'},{'image':'images/9_of_diamonds.png', 'card':'D','value':'9'},{'image':'images/8_of_diamonds.png', 'card':'D','value':'8'},{'image':'images/7_of_diamonds.png', 'card':'D','value':'7'},{'image':'images/6_of_diamonds.png', 'card':'D','value':'6'},{'image':'images/5_of_diamonds.png', 'card':'D','value':'5'},{'image':'images/4_of_diamonds.png', 'card':'D','value':'4'},{'image':'images/3_of_diamonds.png', 'card':'D','value':'3'},{'image':'images/2_of_diamonds.png', 'card':'D','value':'2'}],
+    [{'image':'images/ace_of_hearts.png', 'card':'H','value':'A'},{'image':'images/king_of_hearts2.png', 'card':'H','value':'K'},{'image':'images/queen_of_hearts2.png', 'card':'H','value':'Q'},{'image':'images/jack_of_hearts2.png', 'card':'H','value':'J'},{'image':'images/10_of_hearts.png', 'card':'H','value':'10'},{'image':'images/9_of_hearts.png', 'card':'H','value':'9'},{'image':'images/8_of_hearts.png', 'card':'H','value':'8'},{'image':'images/7_of_hearts.png', 'card':'H','value':'7'},{'image':'images/6_of_hearts.png', 'card':'H','value':'6'},{'image':'images/5_of_hearts.png', 'card':'H','value':'5'},{'image':'images/4_of_hearts.png', 'card':'H','value':'4'},{'image':'images/3_of_hearts.png', 'card':'H','value':'3'},{'image':'images/2_of_hearts.png', 'card':'H','value':'2'}],
+    [{'image':'images/ace_of_clubs.png', 'card':'C','value':'A'},{'image':'images/king_of_clubs2.png', 'card':'C','value':'K'},{'image':'images/queen_of_clubs2.png', 'card':'C','value':'Q'},{'image':'images/jack_of_clubs2.png', 'card':'C','value':'J'},{'image':'images/10_of_clubs.png', 'card':'C','value':'10'},{'image':'images/9_of_clubs.png', 'card':'C','value':'9'},{'image':'images/8_of_clubs.png', 'card':'C','value':'8'},{'image':'images/7_of_clubs.png', 'card':'C','value':'7'},{'image':'images/6_of_clubs.png', 'card':'C','value':'6'},{'image':'images/5_of_clubs.png', 'card':'C','value':'5'},{'image':'images/4_of_clubs.png', 'card':'C','value':'4'},{'image':'images/3_of_clubs.png', 'card':'C','value':'3'},{'image':'images/2_of_clubs.png', 'card':'C','value':'2'}]
 ]
 
 
@@ -61,8 +61,8 @@ function distribute_cards(){
         p1card_ele.setAttribute('value', `${p1card.value}`);
         p1card_ele.setAttribute('num', `${i}`);
         p1card_ele.setAttribute('player', `player1`);
-        p1card_ele.style.background = p1card.card=='S' || p1card.card=='C'?'#777777':'#ff4343';
-        p1card_ele.innerText = `${p1card.card} ${p1card.value}`;
+        p1card_ele.style.background = p1card.card=='S' || p1card.card=='C'?'black':'red';
+        p1card_ele.innerHTML = `<img src=${p1card.image}>`;
         player1.children[1].appendChild(p1card_ele);
         
         let p2card_ele = document.createElement('div');
@@ -72,8 +72,8 @@ function distribute_cards(){
         p2card_ele.setAttribute('value', `${p2card.value}`);
         p2card_ele.setAttribute('num', `${i}`);
         p2card_ele.setAttribute('player', `player2`);
-        p2card_ele.style.background = p2card.card=='S' || p2card.card=='C'?'#777777':'#ff4343';
-        p2card_ele.innerText = `${p2card.card} ${p2card.value}`;
+        p2card_ele.style.background = p2card.card=='S' || p2card.card=='C'?'black':'red';
+        p2card_ele.innerHTML = `<img src=${p2card.image}>`;
         player2.children[1].appendChild(p2card_ele);
         
         let p3card_ele = document.createElement('div');
@@ -83,8 +83,8 @@ function distribute_cards(){
         p3card_ele.setAttribute('value', `${p3card.value}`);
         p3card_ele.setAttribute('num', `${i}`);
         p3card_ele.setAttribute('player', `player3`);
-        p3card_ele.style.background = p3card.card=='S' || p3card.card=='C'?'#777777':'#ff4343';
-        p3card_ele.innerText = `${p3card.card} ${p3card.value}`;
+        p3card_ele.style.background = p3card.card=='S' || p3card.card=='C'?'black':'red';
+        p3card_ele.innerHTML = `<img src=${p3card.image}>`;
         player3.children[1].appendChild(p3card_ele);
         
         let p4card_ele = document.createElement('div');
@@ -94,10 +94,11 @@ function distribute_cards(){
         p4card_ele.setAttribute('value', `${p4card.value}`);
         p4card_ele.setAttribute('num', `${i}`);
         p4card_ele.setAttribute('player', `player4`);
-        p4card_ele.style.background = p4card.card=='S' || p4card.card=='C'?'#777777':'#ff4343';
-        p4card_ele.innerText = `${p4card.card} ${p4card.value}`;
+        p4card_ele.style.background = p4card.card=='S' || p4card.card=='C'?'black':'red';
+        p4card_ele.innerHTML = `<img src=${p4card.image}>`;
         player4.children[1].appendChild(p4card_ele);
     }
+    document.body.style.height = 'auto';
 }
 
 
@@ -166,18 +167,19 @@ function play(player, num, card_shape, card_value){
     }
     cards_on_board.push(card);
     chance++;
-    
     console.log(card, player[num])
     if(cards_on_board.length==4){
         pick_cards();
         cards_on_board = [];
-        chance = 0;
     }
     delete player[num];
     // player = player.filter(Object);
     let card_to_remove = document.getElementById(`${card_shape}${card_value}`);
     console.log(card_to_remove);
     card_to_remove.parentElement.removeChild(card_to_remove);
+    if(chance>=4){
+        chance = 0;
+    }
 }
 
 function sort_cards_on_ground(){
@@ -197,31 +199,35 @@ function pick_cards(){
     sort_cards_on_ground();
     if(cards_on_board[0].player=='player1'){
         alert('player 1 will pick the cards');
+        chance = 0;
         cards_on_board.forEach(card=>{
             player1_collection.push(card);
         })
     }
     else if(cards_on_board[0].player=='player2'){
         alert('player 2 will pick the cards');
+        chance = 1;
         cards_on_board.forEach(card=>{
             player2_collection.push(card);
         })
     }
     else if(cards_on_board[0].player=='player3'){
         alert('player 3 will pick the cards');
+        chance = 2;
         cards_on_board.forEach(card=>{
             player3_collection.push(card);
         })
     }
     else if(cards_on_board[0].player=='player4'){
         alert('player 4 will pick the cards');
+        chance = 3;
         cards_on_board.forEach(card=>{
             player4_collection.push(card);
         })
     }
     setTimeout(() => {
         clean_board();
-        if(player1_cards.length==0){
+        if(player1_cards.filter(Object).length==0){
             restart_game();
         }
     }, 4000);
@@ -237,6 +243,8 @@ function declare_winner(){
     let p2collection = player2_collection.length;
     let p3collection = player3_collection.length;
     let p4collection = player4_collection.length;
+
+    // console
 
     if(p1collection>p2collection){
         if(p1collection>p3collection){
@@ -285,6 +293,8 @@ function declare_winner(){
     player4_cards = [];
     already_distributed = [];
     available_cards = [];
+
+    document.body.style.height = '100vh';
 }
 
 

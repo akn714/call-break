@@ -121,6 +121,7 @@ let used_cards = []
 let cards_on_board = []
 let chaal = null;   // card which is used first
 let chance = 0;
+let c = 0;
 
 // this will return card with greatest priorarty in cards_on_board
 function get_greatest_card(){
@@ -145,7 +146,7 @@ function play(player, num, card_shape, card_value){
     // }
     console.log(player);
     let card = player[num];
-    if(chance==0){
+    if(c==0){
         chaal = card;
     }
     if(card.card==chaal.card && card.card!='S'){
@@ -167,10 +168,12 @@ function play(player, num, card_shape, card_value){
     }
     cards_on_board.push(card);
     chance++;
+    c++;
     console.log(card, player[num])
     if(cards_on_board.length==4){
         pick_cards();
         cards_on_board = [];
+        c = 0;
     }
     delete player[num];
     // player = player.filter(Object);

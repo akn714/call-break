@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button onclick=change_theme() class="theme-btn">change theme</button>
+    
     <h1>Let's Play Call Break</h1>
     <button id="distribute">Distribute cards</button>
 
@@ -41,6 +43,13 @@
     </div>
 
     <script>
+        let html = document.getElementsByTagName('html')[0];
+        html.style.background = 'red';
+        function change_theme(){
+            if(html.style.background=='red') html.style.background = 'green'
+            else html.style.background = 'red';
+        }
+
         let distribute = document.getElementById('distribute');
         distribute.addEventListener('click', ()=>{
             distribute_cards();

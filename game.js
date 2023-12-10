@@ -137,6 +137,7 @@ function get_greatest_card(){
 // function get_card_picker(){
 
 // }
+let greatest_card_on_board = 0;
 
 function play(player, num, card_shape, card_value){
     console.log(chance);
@@ -146,8 +147,27 @@ function play(player, num, card_shape, card_value){
     // }
     console.log(player);
     let card = player[num];
+    
+    let cv; // card value in integer
+    if(card.value=='A'){
+        cv = 13;
+    }
+    else if(card.value=='K'){
+        cv = 12;
+    }
+    else if(card.value=='Q'){
+        cv = 11;
+    }
+    else if(card.value=='J'){
+        cv = 10;
+    }
+    else{
+        cv = parseInt(card.value)-1;
+    }
+
     if(c==0){
         chaal = card;
+        greatest_card_on_board = parseInt(cv);
     }
     if(card.card==chaal.card && card.card!='S'){
         if(card.value=='A'){
@@ -164,6 +184,7 @@ function play(player, num, card_shape, card_value){
         }
         else{
             card.p = parseInt(card.value)-1;
+            cv = parseInt(card.value)-1;
         }
     }
     cards_on_board.push(card);
@@ -183,6 +204,48 @@ function play(player, num, card_shape, card_value){
     if(chance>=4){
         chance = 0;
     }
+    console.log(card.card, chaal.card, cv, greatest_card_on_board);
+    if(card.card==chaal.card && cv>greatest_card_on_board){
+        greatest_card_on_board = cv;
+    }
+    console.log(card.card, chaal.card, cv, greatest_card_on_board);
+}
+
+function player_include(shape, player){
+    for(let i=0;i<13;i++){
+        if(player[i] && player[i].card==shape){
+            return true
+        }
+    }
+    return false
+}
+
+function player_include_greater_then(value, shape, player){
+    let card_value;
+    for(let i=0;i<13;i++){
+        if(player[i]){
+            if(player[i].value=='A'){
+                card_value = 13
+            }
+            else if(player[i].value=='K'){
+                card_value = 12;
+            }
+            else if(player[i].value=='Q'){
+                card_value = 11;
+            }
+            else if(player[i].value=='J'){
+                card_value = 10;
+            }
+            else{
+                card_value = parseInt(player[i].value)-1;
+            }
+            console.log('card_value:', card_value);
+            if(player[i] && player[i].card==shape &&card_value>value){
+                return true
+            }
+        }
+    }
+    return false
 }
 
 function sort_cards_on_ground(){
@@ -206,6 +269,7 @@ function pick_cards(){
         cards_on_board.forEach(card=>{
             player1_collection.push(card);
         })
+        document.getElementById('haath-counter1').innerText = player1_collection.length/4;
     }
     else if(cards_on_board[0].player=='player2'){
         alert('player 2 will pick the cards');
@@ -213,6 +277,7 @@ function pick_cards(){
         cards_on_board.forEach(card=>{
             player2_collection.push(card);
         })
+        document.getElementById('haath-counter2').innerText = player2_collection.length/4;
     }
     else if(cards_on_board[0].player=='player3'){
         alert('player 3 will pick the cards');
@@ -220,6 +285,7 @@ function pick_cards(){
         cards_on_board.forEach(card=>{
             player3_collection.push(card);
         })
+        document.getElementById('haath-counter3').innerText = player3_collection.length/4;
     }
     else if(cards_on_board[0].player=='player4'){
         alert('player 4 will pick the cards');
@@ -227,18 +293,20 @@ function pick_cards(){
         cards_on_board.forEach(card=>{
             player4_collection.push(card);
         })
+        document.getElementById('haath-counter4').innerText = player4_collection.length/4;
     }
     setTimeout(() => {
         clean_board();
         if(player1_cards.filter(Object).length==0){
             restart_game();
+            document.body.style.height = '100vh';
         }
     }, 4000);
 }
 
 function restart_game(){
     declare_winner();
-    distribute.setAttribute('disabled', 'false');
+    distribute.removeAttribute('disabled');
 }
 
 function declare_winner(){
@@ -296,6 +364,11 @@ function declare_winner(){
     player4_cards = [];
     already_distributed = [];
     available_cards = [];
+    
+    document.getElementById('haath-counter1').innerText = 0;
+    document.getElementById('haath-counter2').innerText = 0;
+    document.getElementById('haath-counter3').innerText = 0;
+    document.getElementById('haath-counter4').innerText = 0;
 
     document.body.style.height = '100vh';
 }

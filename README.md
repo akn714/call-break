@@ -11,3 +11,7 @@ This is a cards game called call-break.
 * flashing message instead of alert
 * done: adding cards images
 
+### bugs
+* distribute button not disabling
+* player_include() throwing error when card is not available in player cards
+* game tie

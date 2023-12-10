@@ -7,6 +7,14 @@ function clean_board(){
 }
 
 function clean_all_cards(){
+    player1_cards = [];
+    player2_cards = [];
+    player3_cards = [];
+    player4_cards = [];
+    player1_collection = [];
+    player2_collection = [];
+    player3_collection = [];
+    player4_collection = [];
     clean_board();
     for(let i=0;i<player_cards.length;i++){
         player_cards[i].innerHTML = '';

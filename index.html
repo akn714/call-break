@@ -72,22 +72,26 @@
         let shapes = ['S', 'C', 'H', 'D'];
         let values = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
 
+        let can_pick = true;
+
         let cards = document.getElementsByClassName('cards');
         function make_card_function(){
             for(let i=0;i<4;i++){
                 for(let j=0;j<13;j++){
                     document.getElementById(`${shapes[i]}${values[j]}`).addEventListener('click', ()=>{
                     // cards[i].children[j].addEventListener('click', ()=>{
-                        let card = document.getElementById(`${shapes[i]}${values[j]}`);
-                        let card_shape = card.getAttribute('card');
-                        let card_value = card.getAttribute('value');
-                        let num = card.getAttribute('num');
-                        let player = card.getAttribute('player');
-                        
-                        console.log(card_shape, card_value, player, num);
-                        
-                        drop_card_on_board(card_shape, card_value, player, num);
-
+                        console.log(can_pick);
+                        if(can_pick){
+                            let card = document.getElementById(`${shapes[i]}${values[j]}`);
+                            let card_shape = card.getAttribute('card');
+                            let card_value = card.getAttribute('value');
+                            let num = card.getAttribute('num');
+                            let player = card.getAttribute('player');
+                            
+                            console.log(card_shape, card_value, player, num);
+                            
+                            drop_card_on_board(card_shape, card_value, player, num);
+                        }
                     });
                 }
             }

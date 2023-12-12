@@ -295,8 +295,10 @@ function pick_cards(){
         })
         document.getElementById('haath-counter4').innerText = player4_collection.length/4;
     }
+    can_pick = false;
     setTimeout(() => {
         clean_board();
+        can_pick = true;
         if(player1_cards.filter(Object).length==0){
             restart_game();
             document.body.style.height = '100vh';
@@ -317,9 +319,16 @@ function declare_winner(){
 
     // console
 
-    if(p1collection>p2collection){
-        if(p1collection>p3collection){
-            if(p1collection>p4collection){
+    if(p1collection==p2collection && p2collection==p3collection && p3collection==p4collection && p4collection==0){
+        alert('Game is not yet started');
+        return
+    }
+    if(p1collection>=p2collection){
+        if(p1collection==p2collection) alert('Tie between player 1 and 4'); 
+        else if(p1collection>p3collection){
+            if(p1collection==p3collection) alert('Tie between player 1 and 3');
+            if(p1collection==p4collection){ alert('Tie between player 1 and 4'); return }
+            else if(p1collection>p4collection){
                 alert('player 1 is winner');
             }
             else{

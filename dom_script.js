@@ -70,7 +70,18 @@ function drop_card_on_board(card, card_value, player, num){
     console.log(cards_on_board_element);
     cards_on_board_element[0].appendChild(card_on_board);
     console.log(cards_on_board_element);
-    play(Player,num,card,card_value);
+    play(Player, num, card, card_value);
+}
+
+function sort_all_cards(){
+    for(let i=0;i<4;i++){
+        let player = document.getElementById(`player${i}`);
+
+    }
+}
+
+function sort_cards(){
+
 }
 
 

@@ -14,4 +14,12 @@ This is a cards game called call-break.
 ### bugs
 * fixed: distribute button not disabling
 * fixed (not sure): player_include() throwing error when card is not available in player cards
-* game tie
+* fixed (not sure): game tie
+* bug:
+    * player 1: 2 of heart
+    * player 2: 7 of spade, 'cause it doesn't have heart
+    * player 3: 7 of heart
+    * player 4: can't use 3 of heart, 'cause it has 9 of heart which is greater than 7 of heart, but it should be able to use 3 of heart as player 2 will pick the card
+
+### Todo (server)
+* adding game_id and player_id in req object in middleware

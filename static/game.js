@@ -142,7 +142,7 @@ let greatest_card_on_board = 0;
 function play(player, num, card_shape, card_value){
     console.log(chance);
     // if(chance!=parseInt(player[num].player.substr(6))-1){
-    //     alert('Not your chance');
+    //     flash('Not your chance');
     //     return
     // }
     console.log(player);
@@ -264,7 +264,7 @@ function sort_cards_on_ground(){
 function pick_cards(){
     sort_cards_on_ground();
     if(cards_on_board[0].player=='player1'){
-        alert('player 1 will pick the cards');
+        flash('player 1 will pick the cards');
         chance = 0;
         cards_on_board.forEach(card=>{
             player1_collection.push(card);
@@ -272,7 +272,7 @@ function pick_cards(){
         document.getElementById('haath-counter1').innerText = player1_collection.length/4;
     }
     else if(cards_on_board[0].player=='player2'){
-        alert('player 2 will pick the cards');
+        flash('player 2 will pick the cards');
         chance = 1;
         cards_on_board.forEach(card=>{
             player2_collection.push(card);
@@ -280,7 +280,7 @@ function pick_cards(){
         document.getElementById('haath-counter2').innerText = player2_collection.length/4;
     }
     else if(cards_on_board[0].player=='player3'){
-        alert('player 3 will pick the cards');
+        flash('player 3 will pick the cards');
         chance = 2;
         cards_on_board.forEach(card=>{
             player3_collection.push(card);
@@ -288,7 +288,7 @@ function pick_cards(){
         document.getElementById('haath-counter3').innerText = player3_collection.length/4;
     }
     else if(cards_on_board[0].player=='player4'){
-        alert('player 4 will pick the cards');
+        flash('player 4 will pick the cards');
         chance = 3;
         cards_on_board.forEach(card=>{
             player4_collection.push(card);
@@ -320,45 +320,45 @@ function declare_winner(){
     // console
 
     if(p1collection==p2collection && p2collection==p3collection && p3collection==p4collection && p4collection==0){
-        alert('Game is not yet started');
+        flash('Game is not yet started', 4000);
         return
     }
     if(p1collection>=p2collection){
-        if(p1collection==p2collection) alert('Tie between player 1 and 4'); 
+        if(p1collection==p2collection) flash('Tie between player 1 and 4', 4000); 
         else if(p1collection>p3collection){
-            if(p1collection==p3collection) alert('Tie between player 1 and 3');
-            if(p1collection==p4collection){ alert('Tie between player 1 and 4'); return }
+            if(p1collection==p3collection) flash('Tie between player 1 and 3', 4000);
+            if(p1collection==p4collection){ flash('Tie between player 1 and 4', 4000); return }
             else if(p1collection>p4collection){
-                alert('player 1 is winner');
+                flash('player 1 is winner', 4000);
             }
             else{
-                alert('player 4 is winner');
+                flash('player 4 is winner', 4000);
             }
         }
         else{
             if(p3collection>p4collection){
-                alert('player 3 is winner');
+                flash('player 3 is winner', 4000);
             }
             else{
-                alert('player 4 is winner');
+                flash('player 4 is winner', 4000);
             }
         }
     }
     else{
         if(p2collection>p3collection){
             if(p2collection>p4collection){
-                alert('player 1 is winner');
+                flash('player 1 is winner', 4000);
             }
             else{
-                alert('player 4 is winner');
+                flash('player 4 is winner', 4000);
             }
         }
         else{
             if(p3collection>p4collection){
-                alert('player 3 is winner');
+                flash('player 3 is winner', 4000);
             }
             else{
-                alert('player 4 is winner');
+                flash('player 4 is winner', 4000);
             }
         }
     }

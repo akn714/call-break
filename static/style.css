@@ -1,5 +1,6 @@
 *{
     color: #ff9d9d;
+    font-family: monospace;
 }
 
 html{
@@ -24,17 +25,48 @@ body{
     right: 10px;
 }
 
+#flash-msg{
+    /* background: #00ff0036; */
+    /* background: #00ff007d; */
+    background: #1818187d;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 24px;
+    font-family: monospace;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 85%;
+    /* color: #0c4b0c; */
+    /* color: #086508; */
+    color: #e3e3e3;
+    transition: 3s;
+}
+
 #distribute{
     height: 40px;
-    width: 150px;
+    width: 200px;
     font-size: 18px;
     color: red;
     border: 1px solid blue;
     border-radius: 10px;
     background: #9da4ff73;
     color: #0000b7;
+
+    border: 1px solid #2cc38b;
+    background: #00f966e8;
+    box-shadow: limegreen 0px 0px 17px -4px;
+    font-family: monospace;
+    color: #18793f;
+    font-weight: 600;
 }
 
+#cards_on_board{
+    position: relative;
+}
 .cards_on_board{
     display: flex;
     justify-content: center;

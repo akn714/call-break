@@ -3,6 +3,7 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const io = require('c:/Users/adars/AppData/Roaming/npm/node_modules/socket.io')(server);
+const cookieParser = require('c:/Users/adars/AppData/Roaming/npm/node_modules/cookie-parser')
 
 
 let users = {
@@ -36,12 +37,32 @@ io.on('connection', socket =>{
         // delete users[socket.id];
     })
 
-    
+
+    socket.on('reset_game', ()=>{
+        
+    })
+
     
 });
 
 app.use(express.urlencoded());
 app.use(express.static('static'));
+app.use(cookieParser());
+
+// MIDDLEWARE
+app.use((req, res, next)=>{
+    let game_id = req.cookies.game_id;
+    let player_id = req.cookies.player_id;
+
+    console.log(game_id, player_id);
+    // return res.json({
+    //     'msg':'msg1'
+    // })
+    req.game_id = game_id;
+    req.player_id = player_id;
+
+    next();
+});
 
 // ENDPOINTS
 app.get('/', (req, res)=>{
@@ -66,7 +87,7 @@ app.get('/game', (req, res)=>{
             res.sendFile(__dirname + '/index.html');
         }
         else{
-    
+
         }
     }
     else{

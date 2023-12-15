@@ -22,4 +22,4 @@ This is a cards game called call-break.
     * player 4: can't use 3 of heart, 'cause it has 9 of heart which is greater than 7 of heart, but it should be able to use 3 of heart as player 2 will pick the card
 
 ### Todo (server)
-* adding game_id and player_id in req object in middleware
+* done: adding game_id and player_id in req object in middleware

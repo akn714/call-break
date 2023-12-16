@@ -36,7 +36,7 @@ let distribute = document.getElementById('distribute');
 distribute.addEventListener('click', ()=>{
     distribute_cards();
     make_card_function();
-    distribute.setAttribute('disabled', '')
+    distribute.setAttribute('disabled', '');
 });
 
 let shapes = ['S', 'C', 'H', 'D'];
@@ -56,11 +56,12 @@ function make_card_function(){
                     let card_shape = card.getAttribute('card');
                     let card_value = card.getAttribute('value');
                     let num = card.getAttribute('num');
-                    let player = card.getAttribute('player');
+                    let player_id = card.getAttribute('player');
                     
                     console.log(card_shape, card_value, player, num);
                     
-                    drop_card_on_board(card_shape, card_value, player, num);
+                    socket.emit('drop_card_on_board', card_shape, card_value, player_id, num);
+                    drop_card_on_board(card_shape, card_value, player_id, num);
                 }
             });
         }
@@ -89,12 +90,16 @@ function clean_all_cards(){
     }
 }
 
-function drop_card_on_board(card, card_value, player, num){
+function drop_card_on_board(card, card_value, player_id, num){
     if(chance!=parseInt(player.substr(6))-1){
         flash(`player ${chance+1}'s chance`, 3000);
         return
     }
     let Player = null;
+    socket.emit('player_cards');
+    socket.on('player_cards', (player_cards)=>{
+        // Player = 
+    })
     if(player=='player1'){
         Player = player1_cards;
     }
@@ -138,7 +143,7 @@ function drop_card_on_board(card, card_value, player, num){
     console.log(cards_on_board_element);
     cards_on_board_element[0].appendChild(card_on_board);
     console.log(cards_on_board_element);
-    play(Player, num, card, card_value);
+    play(player_id, num, card, card_value);
 }
 
 function sort_all_cards(){

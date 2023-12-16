@@ -308,24 +308,6 @@ function pick_cards(){
 
 function restart_game(){
     declare_winner();
-
-    player1_collection = [];
-    player2_collection = [];
-    player3_collection = [];
-    player4_collection = [];
-    player1_cards = [];
-    player2_cards = [];
-    player3_cards = [];
-    player4_cards = [];
-    already_distributed = [];
-    available_cards = [];
-    
-    document.getElementById('haath-counter1').innerText = 0;
-    document.getElementById('haath-counter2').innerText = 0;
-    document.getElementById('haath-counter3').innerText = 0;
-    document.getElementById('haath-counter4').innerText = 0;
-
-    document.body.style.height = '100vh';
     distribute.removeAttribute('disabled');
 }
 
@@ -380,6 +362,24 @@ function declare_winner(){
             }
         }
     }
+
+    player1_collection = [];
+    player2_collection = [];
+    player3_collection = [];
+    player4_collection = [];
+    player1_cards = [];
+    player2_cards = [];
+    player3_cards = [];
+    player4_cards = [];
+    already_distributed = [];
+    available_cards = [];
+    
+    document.getElementById('haath-counter1').innerText = 0;
+    document.getElementById('haath-counter2').innerText = 0;
+    document.getElementById('haath-counter3').innerText = 0;
+    document.getElementById('haath-counter4').innerText = 0;
+
+    document.body.style.height = '100vh';
 }
 
 

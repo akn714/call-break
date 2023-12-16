@@ -3,30 +3,21 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const io = require('c:/Users/adars/AppData/Roaming/npm/node_modules/socket.io')(server);
-const cookieParser = require('c:/Users/adars/AppData/Roaming/npm/node_modules/cookie-parser')
+const cookieParser = require('c:/Users/adars/AppData/Roaming/npm/node_modules/cookie-parser');
 
+const game = require('./game');
+const data = require('./data');
 
-let users = {
-    // 'user id': {
-    //     'user name' : '',
-    //     'joined rooms' : []
-    // }
-};
-let Games = {
-    // 'game name': {
-    //      'user name' : {},
-    //      'user name' : {},
-    //      'user name' : {},
-    //      'user name' : {}
-    // }
-};
-// Games.push('one');
-let messages = {
-    'comman' : []
-    // 'room#1' : [],
-    // 'room#2' : []
-}
-let ids = [];
+// let Games = {
+//     // 'game name': {
+//     //      'user name' : {},
+//     //      'user name' : {},
+//     //      'user name' : {},
+//     //      'user name' : {}
+//     // }
+// };
+
+let Games = data.Games;
 
 io.on('connection', socket =>{
     console.log('a user connected');
@@ -38,13 +29,20 @@ io.on('connection', socket =>{
     })
 
 
-    socket.on('reset_game', ()=>{
-        
-    })
+    socket.on('reset_game', (game_id)=>{
+        game.reset_game_(game_id);
+    });
+
+    socket.on('distribute_cards', (game_id)=>{
+        game.distribute_cards_(game_id);
+    });
+
+    socket.on('drop_card_on_board', (card_shape, card_value, player_id, num)=>{
+        // game.d
+    });
 
     
 });
-
 app.use(express.urlencoded());
 app.use(express.static('static'));
 app.use(cookieParser());

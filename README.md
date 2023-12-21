@@ -10,6 +10,7 @@ This is a cards game called call-break.
 * done: disabling distribute cards button after distributing cards
 * flashing message instead of alert
 * done: adding cards images
+* making ui for phones
 
 ### bugs
 * fixed: distribute button not disabling

@@ -1,9 +1,9 @@
-const express = require('C:/Users/adars/AppData/Roaming/npm/node_modules/express');
+const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
-const io = require('c:/Users/adars/AppData/Roaming/npm/node_modules/socket.io')(server);
-const cookieParser = require('c:/Users/adars/AppData/Roaming/npm/node_modules/cookie-parser');
+const io = require('socket.io')(server);
+const cookieParser = require('cookie-parser');
 
 const game = require('./game');
 const data = require('./data');

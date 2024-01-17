@@ -1,5 +1,7 @@
 let { Deck, Games } = require('./data');
 
+let game_id = 0
+
 let players = Object.keys(Games[game_id].players);
 
 module.exports.reset_game_ = (game_id) => {

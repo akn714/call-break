@@ -5,6 +5,14 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 const cookieParser = require('cookie-parser');
 
+const cors = require('cors');
+
+corsOptions = {
+    origin: "http://localhost:3000"
+}
+
+app.use(cors(corsOptions))
+
 const game = require('./game');
 const data = require('./data');
 

@@ -20,10 +20,13 @@ module.exports.Games = {
 
 let game_template = {
     'players':{
+        // player_id = socket.id
+
         // 'player_id':{
         //     'name': 'name of player',
         //     'cards': [],
-        //     'collection': []
+        //     'collection': [],
+        //     'chance_number': 0   // can be 0, 1, 2, 3
         // }
     },
     'available_cards': [],

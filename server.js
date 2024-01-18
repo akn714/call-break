@@ -13,7 +13,7 @@ corsOptions = {
 
 app.use(cors(corsOptions))
 
-const game = require('./game');
+const game = require('./game');     // game contains all function of game
 const data = require('./data');
 
 // let Games = {

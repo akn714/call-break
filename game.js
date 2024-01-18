@@ -1,14 +1,15 @@
 let { Deck, Games } = require('./data');
 
-let game_id = 0
+// let game_id = 0     // game_id's are key in Games
 
-let players = Object.keys(Games[game_id].players);
+// let players = Object.keys(Games[game_id].players);      // players are keys in Games[game_id].players object
 
+// checked
 module.exports.reset_game_ = (game_id) => {
     console.log(`game ${game_id} reset`);
 
     clean_all_cards_(game_id);
-
+    
     Games[game_id].available_cards = [];
     Games[game_id].already_distributed = [];
     Games[game_id].board = [];
@@ -19,7 +20,10 @@ module.exports.reset_game_ = (game_id) => {
     Games[game_id].greatest_card_on_board =  0;
 }
 
+// checked
 module.exports.distribute_cards_ = (game_id) => {
+    let players = Object.keys(Games[game_id].players);
+
     try {
         clean_all_cards_(game_id);
     }
@@ -36,7 +40,9 @@ module.exports.distribute_cards_ = (game_id) => {
     }
 }
 
+// checked
 function clean_all_cards_(game_id){
+    let players = Object.keys(Games[game_id].players);
     for(let i=0;i<4;i++){
         Games[game_id].players[players[i]].cards = [];
         Games[game_id].players[players[i]].collection = [];
@@ -47,8 +53,9 @@ function clean_all_cards_(game_id){
     // }
 }
 
+// checked
 function get_random_card_(game_id, player_id){
-    let random = Math.floor(Math.random()*available_cards.length);
+    let random = Math.floor(Math.random()*Games[game_id].available_cards.length);
     let card = Games[game_id].available_cards[random];
 
     delete Games[game_id].available_cards[random];
@@ -58,13 +65,15 @@ function get_random_card_(game_id, player_id){
     return card;
 }
 
+// checked
+// copies all cards from Deck to available_cards
 function copy_to_cards_(game_id){
     for(let i=0;i<4;i++){
         for(let j=0;j<13;j++){
             if(Deck[i][j].card!='S'){
                 Deck[i][j].p = 0;
             }
-            Games[game_id].available_cards.push(deck[i][j]);
+            Games[game_id].available_cards.push(Deck[i][j]);
         }
     }
 }
@@ -77,9 +86,10 @@ function play_(player_id, num, card_shape, card_value){
     //     return
     // }
     console.log(Games[game_id].players[player_id]);
+    // "num" is the index of card in cards array that player choose
     let card = Games[game_id].players[player_id].cards[num];
     
-    let cv; // card value in integer
+    let cv; // card value is an integer
     if(card.value=='A'){
         cv = 13;
     }
@@ -115,7 +125,7 @@ function play_(player_id, num, card_shape, card_value){
         }
         else{
             card.p = parseInt(card.value)-1;
-            cv = parseInt(card.value)-1;
+            cv = parseInt(card.value)-1;    // cv: card value
         }
     }
     Games[game_id].cards_on_board.push(card);
@@ -123,7 +133,7 @@ function play_(player_id, num, card_shape, card_value){
     Games[game_id].c++;
     console.log(card, Games[game_id].players[player_id].cards[num]);
     if(Games[game_id].cards_on_board.length==4){
-        pick_cards();
+        pick_cards_(game_id);
         Games[game_id].cards_on_board = [];
         Games[game_id].c = 0;
     }
@@ -146,18 +156,18 @@ function play_(player_id, num, card_shape, card_value){
     console.log(card.card, Games[game_id].chaal.card, cv, Games[game_id].greatest_card_on_board);
 }
 
-
-function player_include_(shape, player_id){
+// checked
+function player_include_(game_id, shape, player_id){
     for(let i=0;i<13;i++){
         if(Games[game_id].players[player_id].cards[i] && Games[game_id].players[player_id].cards[i].card==shape){
             return true
-        }_
+        }
     }
     return false
 }
 
-
-function player_include_greater_then_(value, shape, player_id){
+// checked
+function player_include_greater_then_(game_id, value, shape, player_id){
     let card_value;
     for(let i=0;i<13;i++){
         if(Games[game_id].players[player_id].cards[i]){
@@ -185,7 +195,8 @@ function player_include_greater_then_(value, shape, player_id){
     return false
 }
 
-function sort_cards_on_ground_(){
+// checked
+function sort_cards_on_ground_(game_id){
     let temp;
     for(let i=0;i<4;i++){
         for(let j=0;j<3;j++){
@@ -196,43 +207,59 @@ function sort_cards_on_ground_(){
             }
         }
     }
+
+    // TO RETURN MAXIMUM VALUE
+    // let a = Games[game_id].cards_on_board[0].p;
+    // let b = Games[game_id].cards_on_board[1].p;
+    // let c = Games[game_id].cards_on_board[2].p;
+    // let d = Games[game_id].cards_on_board[3].p;
+
+    // return Math.max(a,b,c,d)
 }
 
+// checked
+function pick_cards_(game_id){
+    sort_cards_on_ground_(game_id);
 
-function pick_cards_(){
-    sort_cards_on_ground();
-    if(Games[game_id].cards_on_board[0].player=='player1'){
-        flash('player 1 will pick the cards');
-        Games[game_id].chance = 0;
-        Games[game_id].cards_on_board.forEach(card=>{
-            Games[game_id].players[player_id].collection.push(card);
-        })
-        // document.getElementById('haath-counter1').innerText = player1_collection.length/4;
-    }
-    else if(Games[game_id].cards_on_board[0].player=='player2'){
-        flash('player 2 will pick the cards');
-        Games[game_id].chance = 1;
-        Games[game_id].cards_on_board.forEach(card=>{
-            Games[game_id].players[player_id].collection.push(card);
-        })
-        // document.getElementById('haath-counter2').innerText = player2_collection.length/4;
-    }
-    else if(Games[game_id].cards_on_board[0].player=='player3'){
-        flash('player 3 will pick the cards');
-        Games[game_id].chance = 2;
-        Games[game_id].cards_on_board.forEach(card=>{
-            Games[game_id].players[player_id].collection.push(card);
-        })
-        // document.getElementById('haath-counter3').innerText = player3_collection.length/4;
-    }
-    else if(Games[game_id].cards_on_board[0].player=='player4'){
-        flash('player 4 will pick the cards');
-        Games[game_id].chance = 3;
-        Games[game_id].cards_on_board.forEach(card=>{
-            Games[game_id].players[player_id].collection.push(card);
-        })
-        // document.getElementById('haath-counter4').innerText = player4_collection.length/4;
-    }
+    flash(`${Games[game_id].players[Games[game_id].cards_on_board[0].player].name} will pick the cards`);
+    // Games[game_id].chance = 0;  // have to edit this thing
+    Games[game_id].chance = Games[game_id].players[Games[game_id].cards_on_board[0].player].chance_number
+    Games[game_id].cards_on_board.forEach(card=>{
+        Games[game_id].players[Games[game_id].cards_on_board[0].player].collection.push(card);
+    });
+
+    // if(Games[game_id].cards_on_board[0].player=='player1'){
+    //     flash('player 1 will pick the cards');
+    //     Games[game_id].chance = 0;
+    //     Games[game_id].cards_on_board.forEach(card=>{
+    //         Games[game_id].players[player_id].collection.push(card);
+    //     })
+    //     // document.getElementById('haath-counter1').innerText = player1_collection.length/4;
+    // }
+    // else if(Games[game_id].cards_on_board[0].player=='player2'){
+    //     flash('player 2 will pick the cards');
+    //     Games[game_id].chance = 1;
+    //     Games[game_id].cards_on_board.forEach(card=>{
+    // Games[game_id].players[player_id].collection.push(card);
+    //     })
+    //     // document.getElementById('haath-counter2').innerText = player2_collection.length/4;
+    // }
+    // else if(Games[game_id].cards_on_board[0].player=='player3'){
+    //     flash('player 3 will pick the cards');
+    //     Games[game_id].chance = 2;
+    //     Games[game_id].cards_on_board.forEach(card=>{
+    //         Games[game_id].players[player_id].collection.push(card);
+    //     })
+    //     // document.getElementById('haath-counter3').innerText = player3_collection.length/4;
+    // }
+    // else if(Games[game_id].cards_on_board[0].player=='player4'){
+    //     flash('player 4 will pick the cards');
+    //     Games[game_id].chance = 3;
+    //     Games[game_id].cards_on_board.forEach(card=>{
+    //         Games[game_id].players[player_id].collection.push(card);
+    //     })
+    //     // document.getElementById('haath-counter4').innerText = player4_collection.length/4;
+    // }
     can_pick = false;
     // setTimeout(() => {
     //     clean_board();
@@ -244,59 +271,84 @@ function pick_cards_(){
     // }, 4000);
 }
 
-function restart_game_(){
-    declare_winner_();
+// checked
+function restart_game_(game_id){
+    declare_winner_(game_id);
     // distribute.removeAttribute('disabled');
 }
 
-function declare_winner_(){
-    let p1collection = player1_collection.length;
-    let p2collection = player2_collection.length;
-    let p3collection = player3_collection.length;
-    let p4collection = player4_collection.length;
+// checked
+function declare_winner_(game_id){
+    let players = Object.keys(Games[game_id].players);
+
+    // pxc -> Player X Collection
+    let p1c = players[0].length;
+    let p2c = players[1].length;
+    let p3c = players[2].length;
+    let p4c = players[3].length;
+
+    // if(p1c==p2c) flash(`Tie between player ${players[0]} and ${players[1]}`, 4000);
+    // if(p1c==p3c) flash(`Tie between player ${players[0]} and ${players[2]}`, 4000);
+    // if(p1c==p4c) flash(`Tie between player ${players[0]} and ${players[3]}`, 4000);
+
+    // if(p2c==p3c) flash(`Tie between player ${players[1]} and ${players[2]}`, 4000);
+    // if(p2c==p4c) flash(`Tie between player ${players[1]} and ${players[3]}`, 4000);
+
+    // if(p3c==p4c) flash(`Tie between player ${players[2]} and ${players[3]}`, 4000);
 
     // console
 
-    if(p1collection==p2collection && p2collection==p3collection && p3collection==p4collection && p4collection==0){
+    if(p1c==p2c && p2c==p3c && p3c==p4c && p4c==0){
         flash('Game is not yet started', 4000);
         return
     }
-    if(p1collection>=p2collection){
-        if(p1collection==p2collection) flash('Tie between player 1 and 4', 4000); 
-        else if(p1collection>p3collection){
-            if(p1collection==p3collection) flash('Tie between player 1 and 3', 4000);
-            if(p1collection==p4collection){ flash('Tie between player 1 and 4', 4000); return }
-            else if(p1collection>p4collection){
-                flash('player 1 is winner', 4000);
+    if(p1c>=p2c){
+        // if(p1c==p2c) flash('Tie between player 1 and 4', 4000); 
+        if(p1c==p2c) flash(`Tie between player ${Games[game_id].players[players[0]].name} and ${Games[game_id].players[players[3]].name}`, 4000); 
+        else if(p1c>p3c){
+            // if(p1c==p3c) flash('Tie between player 1 and 3', 4000);
+            if(p1c==p3c) flash(`Tie between player ${Games[game_id].players[players[0]].name} and ${Games[game_id].players[players[2]].name}`, 4000);
+            // if(p1c==p4c){ flash('Tie between player 1 and 4', 4000); return }
+            if(p1c==p4c){ flash(`Tie between player ${Games[game_id].players[players[0]].name} and ${Games[game_id].players[players[3]].name}`, 4000); return }
+            else if(p1c>p4c){
+                // flash('player 1 is winner', 4000);
+                flash(`${Games[game_id].players[players[0]].name} is winner`, 4000);
             }
             else{
-                flash('player 4 is winner', 4000);
+                // flash('player 4 is winner', 4000);
+                flash(`${Games[game_id].players[players[3]].name} is winner`, 4000);
             }
         }
         else{
-            if(p3collection>p4collection){
-                flash('player 3 is winner', 4000);
+            if(p3c>p4c){
+                // flash('player 3 is winner', 4000);
+                flash(`${Games[game_id].players[players[2]].name} is winner`, 4000);
             }
             else{
-                flash('player 4 is winner', 4000);
+                // flash('player 4 is winner', 4000);
+                flash(`${Games[game_id].players[players[3]].name} is winner`, 4000);
             }
         }
     }
     else{
-        if(p2collection>p3collection){
-            if(p2collection>p4collection){
-                flash('player 1 is winner', 4000);
+        if(p2c>p3c){
+            if(p2c>p4c){
+                // flash('player 1 is winner', 4000);
+                flash(`${Games[game_id].players[players[0]].name} is winner`, 4000);
             }
             else{
-                flash('player 4 is winner', 4000);
+                // flash('player 4 is winner', 4000);
+                flash(`${Games[game_id].players[players[3]].name} is winner`, 4000);
             }
         }
         else{
-            if(p3collection>p4collection){
-                flash('player 3 is winner', 4000);
+            if(p3c>p4c){
+                // flash('player 3 is winner', 4000);
+                flash(`${Games[game_id].players[players[2]].name} is winner`, 4000);
             }
             else{
-                flash('player 4 is winner', 4000);
+                // flash('player 4 is winner', 4000);
+                flash(`${Games[game_id].players[players[3]].name} is winner`, 4000);
             }
         }
     }

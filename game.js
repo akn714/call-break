@@ -138,6 +138,7 @@ function play_(player_id, num, card_shape, card_value){
         Games[game_id].c = 0;
     }
     delete Games[game_id].players[player_id].cards[num];
+    Games[game_id].players[player_id].cards = Games[game_id].players[player_id].cards.filter(Object);
     // player = player.filter(Object);
 
     // -------------------------- FRONTEND--------------------------

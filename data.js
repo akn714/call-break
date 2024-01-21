@@ -5,20 +5,34 @@ module.exports.Deck = [
     [{'image':'images/ace_of_clubs.png', 'card':'C','value':'A'},{'image':'images/king_of_clubs2.png', 'card':'C','value':'K'},{'image':'images/queen_of_clubs2.png', 'card':'C','value':'Q'},{'image':'images/jack_of_clubs2.png', 'card':'C','value':'J'},{'image':'images/10_of_clubs.png', 'card':'C','value':'10'},{'image':'images/9_of_clubs.png', 'card':'C','value':'9'},{'image':'images/8_of_clubs.png', 'card':'C','value':'8'},{'image':'images/7_of_clubs.png', 'card':'C','value':'7'},{'image':'images/6_of_clubs.png', 'card':'C','value':'6'},{'image':'images/5_of_clubs.png', 'card':'C','value':'5'},{'image':'images/4_of_clubs.png', 'card':'C','value':'4'},{'image':'images/3_of_clubs.png', 'card':'C','value':'3'},{'image':'images/2_of_clubs.png', 'card':'C','value':'2'}]
 ]
 
+
 // let Games = {
-//     // 'game name': {
-//     //      'user name' : {},
-//     //      'user name' : {},
-//     //      'user name' : {},
-//     //      'user name' : {}
-//     // }
-// };
+//     'game name': {
+//          'user name1' : {},
+//          'user name2' : {},
+//          'user name3' : {},
+//          'user name4' : {}
+//     },
+//     'game id': {
+//          'player id1': {},
+//          'player id2': {},
+//          'player id3': {},
+//          'player id4': {}
+//    }
+// }
 
 module.exports.Games = {
 
 }
 
-let game_template = {
+module.exports.player_template = {
+    'name': '',
+    'cards': [],
+    'collection': [],
+    'chance_number': 0
+}
+
+module.exports.game_template = {
     'players':{
         // player_id = socket.id
 
@@ -35,6 +49,7 @@ let game_template = {
     'used_cards': [],
     'cards_on_board': [],
     'chaal': null,
+    'chance':0,
     'c': 0,
     'greatest_card_on_board': 0
 }

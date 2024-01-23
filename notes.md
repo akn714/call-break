@@ -18,3 +18,6 @@
     * then player3 will play: c=2, chance=3
     * then player4 will play: c=3, chance=4
     * then player1 will play: c=4, chance=1
+
+* /join-a-game -> joining a game
+* /game -> playing the game after joining
